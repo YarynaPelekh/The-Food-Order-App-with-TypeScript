@@ -10,3 +10,15 @@ export type checkoutInfo = {
   postalCode: string;
   city: string;
 };
+
+export type CartProps = {
+  children?: React.ReactNode;
+  onClose: () => {};
+};
+
+export type CartItemType = {
+  id: string;
+  name: string;
+  amount: number;
+  price: number;
+};
