@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 
 import classes from "./Checkout.module.css";
 
-import { PropsCheckout, checkoutInfo } from "./types";
+import { PropsCheckout } from "./types";
 
 const isEmpty = (value: string) => value.trim() === "";
 const isFiveChars = (value: string) => value.trim().length === 5;
