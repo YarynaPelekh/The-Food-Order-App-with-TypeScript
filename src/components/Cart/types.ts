@@ -22,3 +22,12 @@ export type CartItemType = {
   amount: number;
   price: number;
 };
+
+export type CartItemProps = {
+  children?: React.ReactNode;
+  price: number;
+  name: string;
+  amount: number;
+  onRemove: () => void;
+  onAdd: () => void;
+};
