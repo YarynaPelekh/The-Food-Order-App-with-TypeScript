@@ -6,7 +6,9 @@ import classes from "./Cart.module.css";
 import CartContext from "../../store/cart-context";
 import Checkout from "./Checkout";
 
-const Cart = (props) => {
+import { CartProps, CartItemType, checkoutInfo } from "./types";
+
+const Cart = (props: CartProps) => {
   const [isCheckout, setIsCheckout] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [didSubmit, setDidSubmit] = useState(false);
@@ -15,11 +17,11 @@ const Cart = (props) => {
   const totalAmount = `$${cartCtx.totalAmount.toFixed(2)}`;
   const hasItems = cartCtx.items.length > 0;
 
-  const cartItemRemoveHandler = (id) => {
+  const cartItemRemoveHandler = (id: string) => {
     cartCtx.removeItem(id);
   };
 
-  const cartItemAddHandler = (item) => {
+  const cartItemAddHandler = (item: CartItemType) => {
     cartCtx.addItem(item);
   };
 
@@ -27,8 +29,7 @@ const Cart = (props) => {
     setIsCheckout(true);
   };
 
-  const submitOrderHandler = async (userData) => {
-    // console.log(userData);
+  const submitOrderHandler = async (userData: checkoutInfo) => {
     setIsSubmitting(true);
     const response = await fetch(
       "https://react-http-6d70b-default-rtdb.firebaseio.com/orders.json",
@@ -45,7 +46,7 @@ const Cart = (props) => {
 
   const cartItems = (
     <ul className={classes["cart-items"]}>
-      {cartCtx.items.map((item) => (
+      {cartCtx.items.map((item: CartItemType) => (
         <CartItem
           key={item.id}
           name={item.name}
