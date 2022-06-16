@@ -1,4 +1,4 @@
-export type Props = {
+export type PropsCheckout = {
   children?: React.ReactNode;
   onConfirm: (data: checkoutInfo) => {};
   onCancel: () => {};
