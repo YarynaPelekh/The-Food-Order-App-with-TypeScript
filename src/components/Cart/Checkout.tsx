@@ -2,12 +2,12 @@ import { useRef, useState } from "react";
 
 import classes from "./Checkout.module.css";
 
-import { Props, checkoutInfo } from "./types";
+import { PropsCheckout, checkoutInfo } from "./types";
 
 const isEmpty = (value: string) => value.trim() === "";
 const isFiveChars = (value: string) => value.trim().length === 5;
 
-const Checkout = (props: Props) => {
+const Checkout = (props: PropsCheckout) => {
   const [formInputsValidity, setFormInputsValidity] = useState({
     name: true,
     street: true,
