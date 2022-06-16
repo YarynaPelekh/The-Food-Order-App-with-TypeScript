@@ -1,5 +1,10 @@
+export type itemDescription = {
+  name: string;
+  amount: number;
+  price: number;
+};
+
 export type PropsCheckout = {
-  children?: React.ReactNode;
   onConfirm: (data: checkoutInfo) => {};
   onCancel: () => {};
 };
@@ -12,22 +17,16 @@ export type checkoutInfo = {
 };
 
 export type CartProps = {
-  children?: React.ReactNode;
   onClose: () => {};
 };
 
 export type CartItemType = {
   id: string;
-  name: string;
-  amount: number;
-  price: number;
+  item: itemDescription;
 };
 
 export type CartItemProps = {
-  children?: React.ReactNode;
-  price: number;
-  name: string;
-  amount: number;
+  item: itemDescription;
   onRemove: () => void;
   onAdd: () => void;
 };
