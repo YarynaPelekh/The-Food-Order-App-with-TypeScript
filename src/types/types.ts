@@ -17,6 +17,13 @@ export type CartItemType = {
   price: number;
 };
 
+export type MealItemType = {
+  id: string;
+  name: string;
+  description: string;
+  price: number;
+};
+
 export type CartProps = {
   onClose: () => {};
 };
