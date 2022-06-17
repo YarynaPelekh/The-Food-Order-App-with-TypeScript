@@ -6,7 +6,7 @@ import classes from "./Cart.module.css";
 import CartContext from "../../store/cart-context";
 import Checkout from "./Checkout";
 
-import { CartProps, checkoutInfo, CartItemType } from "../types/types";
+import { CartProps, checkoutInfo, CartItemType } from "../../types/types";
 
 const Cart = (props: CartProps) => {
   const [isCheckout, setIsCheckout] = useState(false);
