@@ -34,7 +34,7 @@ export type CartItemProps = {
   onAdd: () => void;
 };
 
-export type inputAmount = {
+export type InputAmount = {
   id: string;
   type: string;
   min: string;

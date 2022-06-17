@@ -2,11 +2,11 @@ import React from "react";
 
 import classes from "./Input.module.css";
 
-import { inputAmount } from "../../types/types";
+import { InputAmount } from "../../types/types";
 
 const Input = React.forwardRef<
   HTMLInputElement,
-  { input: inputAmount; label: string }
+  { input: InputAmount; label: string }
 >((props, ref) => {
   return (
     <div className={classes.input}>
