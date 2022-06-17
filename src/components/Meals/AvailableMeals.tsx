@@ -4,8 +4,10 @@ import Card from "../UI/Card";
 import MealItem from "./MealItem/MealItem";
 import classes from "./AvailableMeals.module.css";
 
+import { MealItemType } from "../../types/types";
+
 const AvailableMeals = () => {
-  const [meals, setMeals] = useState([]);
+  const [meals, setMeals] = useState<MealItemType[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [httpError, setHttpError] = useState(false);
 
@@ -20,7 +22,7 @@ const AvailableMeals = () => {
       }
       const responseData = await response.json();
 
-      const loadedMeals = [];
+      const loadedMeals: MealItemType[] = [];
       for (const key in responseData) {
         loadedMeals.push({
           id: key,
@@ -55,7 +57,7 @@ const AvailableMeals = () => {
     );
   }
 
-  const mealsList = meals.map((meal) => (
+  const mealsList = meals.map((meal: MealItemType) => (
     <MealItem
       key={meal.id}
       id={meal.id}

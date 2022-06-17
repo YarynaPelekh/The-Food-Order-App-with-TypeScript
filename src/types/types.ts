@@ -1,8 +1,3 @@
-export type PropsCheckout = {
-  onConfirm: (data: checkoutInfo) => {};
-  onCancel: () => {};
-};
-
 export type checkoutInfo = {
   name: string;
   street: string;
@@ -10,8 +5,9 @@ export type checkoutInfo = {
   city: string;
 };
 
-export type CartProps = {
-  onClose: () => {};
+export type PropsCheckout = {
+  onConfirm: (data: checkoutInfo) => {};
+  onCancel: () => {};
 };
 
 export type CartItemType = {
@@ -21,8 +17,28 @@ export type CartItemType = {
   price: number;
 };
 
+export type MealItemType = {
+  id: string;
+  name: string;
+  description: string;
+  price: number;
+};
+
+export type CartProps = {
+  onClose: () => {};
+};
+
 export type CartItemProps = {
   item: CartItemType;
   onRemove: () => void;
   onAdd: () => void;
+};
+
+export type InputAmount = {
+  id: string;
+  type: string;
+  min: string;
+  max: string;
+  step: string;
+  defaultValue: string;
 };
