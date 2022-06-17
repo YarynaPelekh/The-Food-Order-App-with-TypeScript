@@ -1,4 +1,5 @@
 export type itemDescription = {
+  id: string;
   name: string;
   amount: number;
   price: number;
@@ -20,10 +21,10 @@ export type CartProps = {
   onClose: () => {};
 };
 
-export type CartItemType = {
-  id: string;
-  item: itemDescription;
-};
+// export type CartItemType = {
+//   id: string;
+//   item: itemDescription;
+// };
 
 export type CartItemProps = {
   item: itemDescription;
