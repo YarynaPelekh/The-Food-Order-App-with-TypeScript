@@ -1,8 +1,3 @@
-export type PropsCheckout = {
-  onConfirm: (data: checkoutInfo) => {};
-  onCancel: () => {};
-};
-
 export type checkoutInfo = {
   name: string;
   street: string;
@@ -10,8 +5,9 @@ export type checkoutInfo = {
   city: string;
 };
 
-export type CartProps = {
-  onClose: () => {};
+export type PropsCheckout = {
+  onConfirm: (data: checkoutInfo) => {};
+  onCancel: () => {};
 };
 
 export type CartItemType = {
@@ -19,6 +15,10 @@ export type CartItemType = {
   name: string;
   amount: number;
   price: number;
+};
+
+export type CartProps = {
+  onClose: () => {};
 };
 
 export type CartItemProps = {
