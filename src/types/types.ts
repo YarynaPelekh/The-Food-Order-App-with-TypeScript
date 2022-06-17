@@ -17,6 +17,13 @@ export type CartItemType = {
   price: number;
 };
 
+export type MealItemType = {
+  id: string;
+  name: string;
+  description: string;
+  price: number;
+};
+
 export type CartProps = {
   onClose: () => {};
 };
@@ -25,4 +32,13 @@ export type CartItemProps = {
   item: CartItemType;
   onRemove: () => void;
   onAdd: () => void;
+};
+
+export type inputAmount = {
+  id: string;
+  type: string;
+  min: string;
+  max: string;
+  step: string;
+  defaultValue: string;
 };
