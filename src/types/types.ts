@@ -33,3 +33,12 @@ export type CartItemProps = {
   onRemove: () => void;
   onAdd: () => void;
 };
+
+export type inputAmount = {
+  id: string;
+  type: string;
+  min: string;
+  max: string;
+  step: string;
+  defaultValue: string;
+};
