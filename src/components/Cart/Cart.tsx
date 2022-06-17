@@ -6,7 +6,7 @@ import classes from "./Cart.module.css";
 import CartContext from "../../store/cart-context";
 import Checkout from "./Checkout";
 
-import { CartProps, checkoutInfo } from "./types";
+import { CartProps, checkoutInfo, CartItemType } from "../types/types";
 
 const Cart = (props: CartProps) => {
   const [isCheckout, setIsCheckout] = useState(false);
@@ -21,13 +21,7 @@ const Cart = (props: CartProps) => {
     cartCtx.removeItem(id);
   };
 
-  // const cartItemAddHandler = (item: CartItemType) => {
-  const cartItemAddHandler = (item: {
-    id: string;
-    name: string;
-    price: number;
-    amount: number;
-  }) => {
+  const cartItemAddHandler = (item: CartItemType) => {
     cartCtx.addItem(item);
   };
 
@@ -52,16 +46,19 @@ const Cart = (props: CartProps) => {
 
   const cartItems = (
     <ul className={classes["cart-items"]}>
-      {cartCtx.items.map(
-        (item: { id: string; name: string; price: number; amount: number }) => (
-          <CartItem
-            key={item.id}
-            item={{ name: item.name, amount: item.amount, price: item.price }}
-            onRemove={cartItemRemoveHandler.bind(null, item.id)}
-            onAdd={cartItemAddHandler.bind(null, item)}
-          />
-        )
-      )}
+      {cartCtx.items.map((item: CartItemType) => (
+        <CartItem
+          key={item.id}
+          item={{
+            id: item.id,
+            name: item.name,
+            amount: item.amount,
+            price: item.price,
+          }}
+          onRemove={cartItemRemoveHandler.bind(null, item.id)}
+          onAdd={cartItemAddHandler.bind(null, { ...item, amount: +1 })}
+        />
+      ))}
     </ul>
   );
 

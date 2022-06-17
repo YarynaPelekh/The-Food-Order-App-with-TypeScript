@@ -1,9 +1,3 @@
-export type itemDescription = {
-  name: string;
-  amount: number;
-  price: number;
-};
-
 export type PropsCheckout = {
   onConfirm: (data: checkoutInfo) => {};
   onCancel: () => {};
@@ -22,11 +16,13 @@ export type CartProps = {
 
 export type CartItemType = {
   id: string;
-  item: itemDescription;
+  name: string;
+  amount: number;
+  price: number;
 };
 
 export type CartItemProps = {
-  item: itemDescription;
+  item: CartItemType;
   onRemove: () => void;
   onAdd: () => void;
 };
