@@ -42,3 +42,8 @@ export type InputAmount = {
   step: string;
   defaultValue: string;
 };
+
+export type PropsOnClose = {
+  children?: React.ReactNode;
+  onClose?: () => {};
+};
