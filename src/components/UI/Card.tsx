@@ -1,10 +1,8 @@
 import classes from "./Card.module.css";
 
-type Props = {
-  children?: React.ReactNode;
-};
+import { PropsOnClose } from "../../types/types";
 
-const Card: React.FC<Props> = (props) => {
+const Card: React.FC<PropsOnClose> = (props) => {
   return <div className={classes.card}>{props.children}</div>;
 };
 
