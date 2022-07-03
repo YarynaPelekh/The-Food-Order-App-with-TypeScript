@@ -1,10 +1,9 @@
 import { Fragment } from "react";
 import ReactDOM from "react-dom";
 
-import classes from "./Modal.module.css";
+import { PropsOnClose } from "../../types/GereralTypes";
 
-// import { Props, OnCloseType, PropsOnClose } from "../../types/types";
-import { PropsOnClose } from "../../types/types";
+import classes from "./Modal.module.css";
 
 const Backdrop: React.FC<PropsOnClose> = (props) => {
   return <div className={classes.backdrop} onClick={props.onClose} />;
@@ -20,9 +19,6 @@ const ModalOverlay: React.FC<PropsOnClose> = (props) => {
 
 const portalElement = document.getElementById("overlays") as HTMLElement;
 
-// const Modal: React.FC<{ props: Props; onClose: () => {} }> = (
-//   props,
-//   onClose
 const Modal: React.FC<PropsOnClose> = (props) => {
   return (
     <Fragment>
