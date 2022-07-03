@@ -1,8 +1,8 @@
 import React from "react";
 
-import classes from "./Input.module.css";
+import { InputAmount } from "../../types/GereralTypes";
 
-import { InputAmount } from "../../types/types";
+import classes from "./Input.module.css";
 
 const Input = React.forwardRef<
   HTMLInputElement,

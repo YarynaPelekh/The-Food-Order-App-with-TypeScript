@@ -1,7 +1,9 @@
 import { useReducer } from "react";
-import { PropsOnClose, CartItemType } from "../types/types";
 
 import CartContext from "./cart-context";
+
+import { PropsOnClose } from "../types/GereralTypes";
+import { CartItemType } from "../types/CartTypes";
 
 const defaultCartState = {
   items: [] as CartItemType[],
@@ -79,7 +81,6 @@ const CartProvider: React.FC<PropsOnClose> = (props) => {
       ...{ type: "ADD", item: item },
     };
     dispatchCartAction(actionType);
-    // dispatchCartAction({ type: "ADD", item: item });
   };
 
   const removeItemFromCartHandler = (id: string) => {
@@ -88,7 +89,6 @@ const CartProvider: React.FC<PropsOnClose> = (props) => {
       ...{ type: "REMOVE", id: id },
     };
     dispatchCartAction(actionType);
-    // dispatchCartAction({ type: "REMOVE", id: id });
   };
 
   const clearCartHandler = () => {
@@ -97,7 +97,6 @@ const CartProvider: React.FC<PropsOnClose> = (props) => {
       ...{ type: "CLEAR" },
     };
     dispatchCartAction(actionType);
-    // dispatchCartAction({ type: "CLEAR" });
   };
 
   const cartContext = {

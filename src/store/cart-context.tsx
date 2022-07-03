@@ -1,6 +1,6 @@
 import React from "react";
 
-import { CartItemType } from "../types/types";
+import { CartItemType } from "../types/CartTypes";
 
 const CartContext = React.createContext({
   items: [] as CartItemType[],

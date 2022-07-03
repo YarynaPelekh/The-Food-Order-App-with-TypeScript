@@ -2,16 +2,21 @@ import React, { useContext, useState } from "react";
 
 import Modal from "../UI/Modal";
 import CartItem from "./CartItem";
-import classes from "./Cart.module.css";
-import CartContext from "../../store/cart-context";
 import Checkout from "./Checkout";
 
-import { CartProps, checkoutInfo, CartItemType } from "../../types/types";
+import CartContext from "../../store/cart-context";
+
+import { CartProps, CartItemType } from "../../types/CartTypes";
+import { checkoutInfo } from "../../types/CheckoutTypes";
+
+import classes from "./Cart.module.css";
 
 const Cart = (props: CartProps) => {
   const [isCheckout, setIsCheckout] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [didSubmit, setDidSubmit] = useState(false);
+  const [isFetchingError, setIsFetchingError] = useState(false);
+
   const cartCtx = useContext(CartContext);
 
   const totalAmount = `$${cartCtx.totalAmount.toFixed(2)}`;
@@ -31,13 +36,17 @@ const Cart = (props: CartProps) => {
 
   const submitOrderHandler = async (userData: checkoutInfo) => {
     setIsSubmitting(true);
-    const response = await fetch(
-      "https://react-http-6d70b-default-rtdb.firebaseio.com/orders.json",
-      {
+    try {
+      const response = await fetch("https://react-http-6d70b-default-rtdb.firebaseio.com/orders.json", {
         method: "POST",
         body: JSON.stringify({ user: userData, orderedItems: cartCtx.items }),
+      });
+      if (!response.ok) {
+        throw new Error("Something went wrong!");
       }
-    );
+    } catch {
+      setIsFetchingError(true);
+    }
 
     setIsSubmitting(false);
     setDidSubmit(true);
@@ -65,7 +74,8 @@ const Cart = (props: CartProps) => {
   const modalActions = (
     <div className={classes.actions}>
       <button className={classes["button--alt"]} onClick={props.onClose}>
-        Close
+        {" "}
+        Close{" "}
       </button>
       {hasItems && (
         <button className={classes.button} onClick={orderHandler}>
@@ -82,16 +92,21 @@ const Cart = (props: CartProps) => {
         <span>Total Amount</span>
         <span>{totalAmount}</span>
       </div>
-      {isCheckout && (
-        <Checkout onConfirm={submitOrderHandler} onCancel={props.onClose} />
-      )}
+      {isCheckout && <Checkout onConfirm={submitOrderHandler} onCancel={props.onClose} />}
       {!isCheckout && modalActions}
     </React.Fragment>
   );
   const isSubmittingModalContent = <p>Sending order data....</p>;
   const didSubmitModalContent = (
     <React.Fragment>
-      <p>Succeefully send the order!</p>
+      {isFetchingError && (
+        <section className={classes.carterror}>
+          <p>"Something went wrong!"</p>
+        </section>
+      )}
+
+      {!isFetchingError && <p>Succeefully send the order!</p>}
+
       <div className={classes.actions}>
         <button className={classes.button} onClick={props.onClose}>
           Close
@@ -101,7 +116,6 @@ const Cart = (props: CartProps) => {
   );
 
   return (
-    // <Modal>
     <Modal onClose={props.onClose}>
       {!isSubmitting && !didSubmit && cartModalContent}
       {isSubmitting && isSubmittingModalContent}

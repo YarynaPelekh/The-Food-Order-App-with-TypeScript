@@ -1,8 +1,8 @@
 import { useRef, useState } from "react";
 
-import classes from "./Checkout.module.css";
+import { PropsCheckout } from "../../types/CheckoutTypes";
 
-import { PropsCheckout } from "../../types/types";
+import classes from "./Checkout.module.css";
 
 const isEmpty = (value: string) => value.trim() === "";
 const isFiveChars = (value: string) => value.trim().length === 5;
@@ -58,21 +58,25 @@ const Checkout = (props: PropsCheckout) => {
     });
   };
 
-  const nameControlClasses = `${classes.control} ${
-    formInputsValidity.name ? "" : classes.invalid
-  }`;
+  const addInvalidClass = (value: boolean) => {
+    return value ? "" : classes.invalid;
+  };
 
-  const streetControlClasses = `${classes.control} ${
-    formInputsValidity.street ? "" : classes.invalid
-  }`;
+  const nameControlClasses = `${classes.control} ${addInvalidClass(
+    formInputsValidity.name
+  )}`;
 
-  const postalControlClasses = `${classes.control} ${
-    formInputsValidity.postalCode ? "" : classes.invalid
-  }`;
+  const streetControlClasses = `${classes.control} ${addInvalidClass(
+    formInputsValidity.street
+  )}`;
 
-  const cityControlClasses = `${classes.control} ${
-    formInputsValidity.city ? "" : classes.invalid
-  }`;
+  const postalControlClasses = `${classes.control} ${addInvalidClass(
+    formInputsValidity.postalCode
+  )}`;
+
+  const cityControlClasses = `${classes.control} ${addInvalidClass(
+    formInputsValidity.city
+  )}`;
 
   return (
     <form className={classes.form} onSubmit={confirmHandler}>
